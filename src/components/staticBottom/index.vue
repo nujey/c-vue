@@ -46,6 +46,9 @@ export default {
             name: 'revenue',
             query: {
               tabIndex: index
+            },
+            params: {
+              "u": 123
             }
           })
           break
@@ -54,6 +57,9 @@ export default {
             name: 'flow',
             query: {
               tabIndex: index
+            },
+            params: {
+              'id': 456789
             }
           })
           break

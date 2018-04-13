@@ -28,7 +28,8 @@ export default {
   },
   mounted() {
     // 点击的时候获取最近七天的数组
-    this.dayArray = dayData.laterSenvenDay(7).slice(0)
+    this.dayArray = dayData.dayBreakOffData(2, 3).slice(0)
+    console.log(this.dayArray)
     this.day = this.dayArray[3]
     this.handleDrawLine(this.seriesData)
   },

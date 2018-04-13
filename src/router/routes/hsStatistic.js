@@ -44,7 +44,7 @@ export default [
         component: () => import('../../views/statistic/flow/index.vue'),
         children: [
           {
-            path: 'flow',
+            path: '/flow/flow/:id',
             name: 'flow',
             meta: {
               title: '流量统计'

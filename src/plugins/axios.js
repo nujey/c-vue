@@ -1,8 +1,5 @@
 import axios from 'axios'
 // 引入解密的私钥
-// import KEY from '../utils/jsencrypt'
-// import jsencrypt from 'jsencrypt/bin/jsencrypt'
-// import Base64 from '../utils/base64'
 // 设置请求拦截器
 axios.interceptors.request.use((config) => {
   config.headers['X-Requested-With'] = 'XMLHttpRequest'
