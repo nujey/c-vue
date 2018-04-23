@@ -1,5 +1,5 @@
 <template>
-  <div class="goods">
+  <div class="goods" id="goods" ref="goods">
     <!-- 顶部轮播 -->
     <div class="swiper-goods">
       <goods-swiper :listData="swiperList"></goods-swiper>
@@ -33,12 +33,41 @@
     <div class="goods-spec" v-if="specStatus" @click.self="specStatus = false">
       <goods-format @handleCloseFormat="specStatus = false"></goods-format>
     </div>
+    <div class="testScroll" ref="testdom" v-for="(item, index) in domlist" :key="index">
+      <span @click="handleStatistic(index)">数据统计页面{{index}}</span>
+    </div>
   </div>
 </template>
 <script>
 import goodsSwiper from './components/goods-swiper'
 import goodsFormat from './components/goods-format'
-
+const domlist = [{
+  item: 1
+}, {
+  item: 1
+}, {
+  item: 1
+}, {
+  item: 1
+}, {
+  item: 1
+}, {
+  item: 1
+}, {
+  item: 1
+}, {
+  item: 1
+}, {
+  item: 1
+}, {
+  item: 1
+}, {
+  item: 1
+}, {
+  item: 1
+}, {
+  item: 1
+}]
 export default {
   data() {
     return {
@@ -50,32 +79,21 @@ export default {
       // 商品评价列表
       evaluateList: [],
       // 轮播图列表
-      swiperList: []
+      swiperList: [],
+      domlist
     }
   },
   components: {
     goodsSwiper,
     goodsFormat
   },
-  created() {
+  mounted() {
     // 接口请求的时候 都是按照封装起来的 类似于模版
-    this.$axios.get(this.$apis.goods.productDetail, {
-      params: {
-        parameter: {
-          token: '8d44ea9a347abc525f0ee3e554ef6d36',
-          product_id: 1318
-        }
-      }
-    }).then((res) => {
-      // 商品基本详情对象
-      this.goodsData = res.data
-      // 商品评价数组
-      this.evaluateList = res.data.evaluate_data.slice(0, 1)
-      // 轮播图详情
-      this.swiperList = res.data.product_img.slice(0)
-      // 请求商品规格
-      this.handleQueryNorms()
-    })
+    if (window.localStorage.getItem('pos')) {
+      const pos = window.localStorage.getItem('pos')
+      document.body.scrollTop = pos - 200
+      document.documentElement.scrollTop = pos
+    }
   },
   methods: {
     /**
@@ -84,21 +102,18 @@ export default {
     handleShowSpec(p) {
       this.specStatus = true
     },
+    handleStatistic(index) {
+      const dom = document.getElementById('goods')
+      window.localStorage.setItem('pos', this.$refs.testdom[index].offsetTop)
+      this.$router.push({
+        name: 'flow'
+      })
+    },
     /**
      * 请求商品规格
     */
     handleQueryNorms() {
-      const parameter = {
-        token: '8d44ea9a347abc525f0ee3e554ef6d36',
-        product_id: 1318
-      }
-      this.$axios.get(this.$apis.goods.productRules, {
-        params: {
-          parameter
-        }
-      }).then((res) => {
-        // console.log(res)
-      })
+      // 1
     }
   }
 }
@@ -107,7 +122,7 @@ export default {
 <style lang="stylus" rel="stylesheet/stylus" scoped>
 .goods
   background #f5f5f5;
-  height 100%;
+  overflow scroll;
 .swiper-goods
   width 100%;
   height 375px;

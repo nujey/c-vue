@@ -1,7 +1,7 @@
 /**
  * 该包是根据moment.js来做的二次封装 用来返回想要的日期数组等 API后续更新
  * @author zhangfeng 【github nujey】
- * @version 0.0.1 
+ * @version 0.0.1
  */
 import moment from 'moment'
 

@@ -48,7 +48,7 @@ export default {
               tabIndex: index
             },
             params: {
-              "u": 123
+              'u': 123
             }
           })
           break
