@@ -6,9 +6,15 @@ const router = new VueRouter({
   routes,
   mode: 'history',
   scrollBehavior (to, from, savedposition) {
-    // console.log(savedposition)
-    return {
-      y: savedposition
+    if (savedposition) {
+      return {
+        y: savedposition.y
+      }
+    } else {
+      return {
+        x: 0,
+        y: 0
+      }
     }
   }
 })
