@@ -28,7 +28,7 @@ export default {
 }
 </script>
 
-<style lang="stylus" scped>
+<style lang="stylus" scoped>
 #app {
   font-family: 'PingFang-SC-Regular', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
