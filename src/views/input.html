@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>H5实现录制视频</title>
+</head>
+<body>
+  <div>
+    <form>
+        拍照：
+        <input type="file" accept="image/*" capture="camera" id="image" onchange="previewIme(this)">
+        <input type="submit">
+    </form>
+    <img id="imgUload" alt="1" width="100px" height="100px"/>
+  </div> 
+  <div>
+    录像：
+    <input type="file" accept="video/*" capture="camcorder" id="video"/>
+  </div>
+  <div>
+    录音：
+    <input type="file" accept="audio/*" capture="microphone" id="audio">
+  </div>
+</body>
+<script>
+  // fileReader
+  function changeImage() {
+    var reads = new FileReader();
+    var img = document.getElementById('image').files[0];
+    // console.log(img.files[0])
+    reads.readAsDataURL(img)
+    // console.log(reads.readAsDataURL(img.files[0]))
+    reads.onload = function(e) {
+      console.log(this, 111)
+      document.getElementById('imgUload').src = this.result
+    }
+  }
+  function previewIme(obj) {
+    var newsrc = obj.files[0]
+    var url = null
+    if (window.createObjectURl != undefined) {
+      url = window.createObjectURL(newsrc)
+      console.log(url, 1)
+    } else if (window.URL != undefined) {
+      url = window.URL.createObjectURL(newsrc)
+      console.log(url, 2)
+    } else if (window.webkitURL != undefined) {
+      url = window.webkitURL.createObjectURL(newsrc)
+      console.log(url, 3)
+    }
+    document.getElementById('imgUload').src = url
+  }
+  window.onload = function() {
+    var img = document.getElementById('image')
+    var video = document.getElementById('video')
+    var audio = document.getElementById('audio')
+    // img.onchange = function() {
+    //   console.log(window)
+    //   console.log(img.value)
+    //   document.getElementById('imgUload').src = img.value
+    // }
+    video.onchange = function() {
+      alert('video')
+    }
+    audio.onchange = function() {
+      console.log('audio')
+    }
+  }
+</script>
+</html>
