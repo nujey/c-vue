@@ -1,25 +1,24 @@
 import axios from 'axios'
-// 引入解密的私钥
 // 设置请求拦截器
 axios.interceptors.request.use((config) => {
   config.headers['X-Requested-With'] = 'XMLHttpRequest'
-
-  return config
+    return config
+}, err => {
+  // '加载超市逻辑可以写在这里'
+  return Promise.reject(err)
 })
 
 // 设置响应的拦截器
 axios.interceptors.response.use((response) => {
-  // 这里获取到的数据是经过加密的 所以需要前端解密
   let data = response.data
   switch (data.errCode) {
-    case 0:
-    case 40000:
+    // 比如登陆成功
+    case 10000:
       return data
     // 后面在这里统一处理错误
     case 'SHIRO_E5001':
-      // 可以在这里设置未登录的跳转等
+      // 可以在这里设置未登录的路由跳转 逻辑判断等等
       break
-
     default:
   }
   const err = new Error(data.errMsg)
