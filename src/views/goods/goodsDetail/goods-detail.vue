@@ -79,8 +79,7 @@ export default {
       // 商品评价列表
       evaluateList: [],
       // 轮播图列表
-      swiperList: [],
-      domlist
+      swiperList: []
     }
   },
   components: {
