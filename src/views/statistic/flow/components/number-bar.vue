@@ -14,6 +14,7 @@ import echarts from 'echarts'
 import Option from './barLine'
 import TimeDay from '../../../../utils/time'
 
+/* eslint-disable */
 let lineEcharts
 let dayData = new TimeDay()
 export default {
@@ -29,7 +30,7 @@ export default {
   mounted() {
     // 点击的时候获取最近七天的数组
     this.dayArray = dayData.dayBreakOffData(2, 3).slice(0)
-    console.log(this.dayArray)
+    // console.log(this.dayArray)
     this.day = this.dayArray[3]
     this.handleDrawLine(this.seriesData)
   },
